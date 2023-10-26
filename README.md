@@ -13,7 +13,7 @@ terraform init
 terraform apply -var "project_id=$PROJECT_ID" -var "billing_account=$BILLING_ID" -var "project_create=true"
 
 # To destroy the project
-terraform destroy
+terraform destroy -var "project_id=$PROJECT_ID"
 
 cd ..
 ```
