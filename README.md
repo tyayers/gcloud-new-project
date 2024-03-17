@@ -1,19 +1,19 @@
 # gcloud-new-project
 
-To create a new Google Cloud project with default organizational policies pre-set, just replace the YOUR_PROJECT_ID and YOUR_BILLING_ID below and apply the configuration.
+This template creates a new Google Cloud project with some organizational policies pre-configured (see the configuration in `./tf/main.tf`, change as needed).
 
-```bash
-cd tf
+You can easily run this in Google Cloud Shell by clicking on this button.
 
-export PROJECT_ID="YOUR_PROJECT_ID"
-export BILLING_ID="YOUR_BILLING_ID"
 
-# To create the project simply init and apply the configuration
-terraform init
-terraform apply -var "project_id=$PROJECT_ID" -var "billing_account=$BILLING_ID" -var "project_create=true"
+
+```sh
+# First replace the new Project Id and existing Billing Id in the 1_env.sh file, then source it.
+source 1_env.sh
+
+# Now apply configuration to create the project
+./2_apply.sh
 
 # To destroy the project
-terraform destroy -var "project_id=$PROJECT_ID"
+./3_destroy.sh
 
-cd ..
 ```
