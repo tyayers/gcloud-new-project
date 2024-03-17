@@ -38,7 +38,7 @@ Click <walkthrough-editor-open-file filePath="2_apply.sh">here</walkthrough-edit
 Then, run the `2_apply.sh` file in the shell.
 
 ```sh
-source ./2_apply.sh
+./2_apply.sh
 ```
 When the command has been inserted into your shell, press Enter to run the command.
 
