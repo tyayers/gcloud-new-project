@@ -1,3 +1,6 @@
+
+# Variables
+
 variable "project_id" {
   description = "Project id to deploy the application to."
   type        = string
