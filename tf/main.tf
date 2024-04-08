@@ -38,6 +38,8 @@ module "project" {
   billing_account = var.billing_account
   project_create  = var.project_create
   services = [
+    "cloudresourcemanager.googleapis.com",
+    "serviceusage.googleapis.com",
     "compute.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudscheduler.googleapis.com",
