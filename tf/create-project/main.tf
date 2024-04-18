@@ -77,7 +77,13 @@ module "project" {
   }
 }
 
-# Add user
+resource "time_sleep" "wait_180_seconds" {
+  depends_on = [module.project]
+
+  create_duration = "180s"
+}
+
+
 resource "google_project_iam_member" "member-role" {
   for_each = toset([
     "roles/editor",
@@ -86,4 +92,5 @@ resource "google_project_iam_member" "member-role" {
   role = each.key
   member = "user:${var.add_user}"
   project = module.project.project_id
+  depends_on = [ time_sleep.wait_180_seconds ]
 }
