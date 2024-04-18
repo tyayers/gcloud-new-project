@@ -7,6 +7,8 @@ You can easily run this in Google Cloud Shell by clicking on this button.
 [![Open in Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.png)](https://ssh.cloud.google.com/cloudshell/open?cloudshell_git_repo=https://github.com/tyayers/gcloud-new-project&cloudshell_git_branch=main&cloudshell_workspace=.&cloudshell_tutorial=docs/tutorial.md)
 
 ```sh
+gcloud auth application-default login
+
 # First copy the 1_env.sh file
 cp 1_env.sh 1_env.dev.sh
 # Change file contents to your GCP info, then source file
