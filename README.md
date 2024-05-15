@@ -8,9 +8,9 @@ You can easily run this in Google Cloud Shell by clicking on this button.
 
 ```sh
 # First copy the 1_env.sh file
-cp 1_env.sh 1_env.dev.sh
+cp 1_env.sh 1_env.local.sh
 # Change file contents to your GCP info, then source file
-source 1_env.dev.sh
+source 1_env.local.sh
 
 # Now apply configuration to create the project
 ./2_apply.sh

@@ -1,4 +1,4 @@
-*.dev.sh
+*.local.*
 
 # Local .terraform directories
 **/.terraform/*
