@@ -53,7 +53,8 @@ module "project" {
     "integrations.googleapis.com",
     "connectors.googleapis.com",
     "cloudkms.googleapis.com",
-    "secretmanager.googleapis.com"
+    "secretmanager.googleapis.com",
+    "servicenetworking.googleapis.com"
   ]
   policy_boolean = {
     "constraints/compute.requireOsLogin" = false
