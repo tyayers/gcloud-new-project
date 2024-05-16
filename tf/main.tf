@@ -48,7 +48,12 @@ module "project" {
     "artifactregistry.googleapis.com",
     "cloudscheduler.googleapis.com",
     "run.googleapis.com",
-    "bigquery.googleapis.com"
+    "bigquery.googleapis.com",
+    "apigee.googleapis.com",
+    "integrations.googleapis.com",
+    "connectors.googleapis.com",
+    "cloudkms.googleapis.com",
+    "secretmanager.googleapis.com"
   ]
   policy_boolean = {
     "constraints/compute.requireOsLogin" = false
