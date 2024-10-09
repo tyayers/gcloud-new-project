@@ -34,3 +34,11 @@ gcloud org-policies set-policy ./policies/vmExternalIpAccess.local.yaml --projec
 echo "Create network, if it doesn't exist..."
 gcloud services enable compute.googleapis.com
 gcloud compute networks create default
+
+if [ -n "$GCP_ADD_USER" ]
+then
+echo "Adding user..."
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="user:$GCP_ADD_USER" \
+    --role="roles/editor"
+fi
