@@ -42,8 +42,26 @@ gcloud compute networks create default
 
 if [ -n "$GCP_ADD_USER" ]
 then
-echo "Adding user..."
-gcloud projects add-iam-policy-binding $PROJECT_ID \
-    --member="user:$GCP_ADD_USER" \
-    --role="roles/editor"
+    echo "Adding user..."
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/editor"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/apigee.admin"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/integrations.integrationAdmin"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/serviceusage.serviceUsageAdmin"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/compute.networkAdmin"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/cloudkms.admin"
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+        --member="user:$GCP_ADD_USER" \
+        --role="roles/compute.admin"
 fi
