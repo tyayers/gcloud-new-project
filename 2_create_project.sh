@@ -12,24 +12,29 @@ gcloud config set project $PROJECT_ID
 gcloud services enable orgpolicy.googleapis.com
 gcloud services enable cloudresourcemanager.googleapis.com
 
+sleep 5
+
 echo "Setting organizational policy configuration..."
 PROJECT_NUMBER=$(gcloud projects list --filter="$(gcloud config get-value project)" --format="value(PROJECT_NUMBER)")
 echo "Found project number $PROJECT_NUMBER"
 
-cp policies/requireOsLogin.yaml policies/requireOsLogin.local.yaml
-cp policies/allowedPolicyMemberDomains.yaml policies/allowedPolicyMemberDomains.local.yaml
-cp policies/requireShieldedVm.yaml policies/requireShieldedVm.local.yaml
-cp policies/vmExternalIpAccess.yaml policies/vmExternalIpAccess.local.yaml
+if [ -n "$PROJECT_NUMBER" ]
+then
+    cp policies/requireOsLogin.yaml policies/requireOsLogin.local.yaml
+    cp policies/allowedPolicyMemberDomains.yaml policies/allowedPolicyMemberDomains.local.yaml
+    cp policies/requireShieldedVm.yaml policies/requireShieldedVm.local.yaml
+    cp policies/vmExternalIpAccess.yaml policies/vmExternalIpAccess.local.yaml
 
-sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/requireOsLogin.local.yaml
-sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/allowedPolicyMemberDomains.local.yaml
-sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/requireShieldedVm.local.yaml
-sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/vmExternalIpAccess.local.yaml
+    sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/requireOsLogin.local.yaml
+    sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/allowedPolicyMemberDomains.local.yaml
+    sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/requireShieldedVm.local.yaml
+    sed -i "s@{PROJECTNUMBER}@$PROJECT_NUMBER@" policies/vmExternalIpAccess.local.yaml
 
-gcloud org-policies set-policy ./policies/requireOsLogin.local.yaml --project=$PROJECT_ID
-gcloud org-policies set-policy ./policies/allowedPolicyMemberDomains.local.yaml --project=$PROJECT_ID
-gcloud org-policies set-policy ./policies/requireShieldedVm.local.yaml --project=$PROJECT_ID
-gcloud org-policies set-policy ./policies/vmExternalIpAccess.local.yaml --project=$PROJECT_ID
+    gcloud org-policies set-policy ./policies/requireOsLogin.local.yaml --project=$PROJECT_ID
+    gcloud org-policies set-policy ./policies/allowedPolicyMemberDomains.local.yaml --project=$PROJECT_ID
+    gcloud org-policies set-policy ./policies/requireShieldedVm.local.yaml --project=$PROJECT_ID
+    gcloud org-policies set-policy ./policies/vmExternalIpAccess.local.yaml --project=$PROJECT_ID
+fi
 
 echo "Create network, if it doesn't exist..."
 gcloud services enable compute.googleapis.com
